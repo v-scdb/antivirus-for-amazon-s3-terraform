@@ -85,7 +85,7 @@ resource "aws_lb" "LoadBalancer" {
   idle_timeout       = 60
   internal           = var.lb_scheme != "internet-facing"
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.LoadBalancerSecurityGroup.id]
+  security_groups    = [aws_security_group.LoadBalancerSecurityGroup[count.index]]
   subnets            = [var.subnet_a_id, var.subnet_b_id]
   tags               = { (join("-", ["${var.service_name}", "${aws_appconfig_application.AppConfigAgentApplication.id}"])) = "ConsoleLoadBalancer" }
 }
