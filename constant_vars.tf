@@ -145,11 +145,11 @@ variable "ecr_account" {
 variable "console_image_url" {
   description = "Console container image URL (not intended to be changed by consumer)"
   type        = string
-  default     = "${var.ecr_account}.dkr.ecr.us-east-1.amazonaws.com/cloudstoragesecurity/console:v6.04.006"
+  default     = "564477214187.dkr.ecr.us-east-1.amazonaws.com/cloudstoragesecurity/console:v6.04.006"
 }
 
 variable "agent_image_url" {
   description = "Agent container image URL (not intended to be changed by consumer)"
   type        = string
-  default     = "${var.ecr_account}.dkr.ecr.<region>.amazonaws.com/cloudstoragesecurity/agent:v6.04.006"
+  default     = "564477214187.dkr.ecr.<region>.amazonaws.com/cloudstoragesecurity/agent:v6.04.006"
 }
