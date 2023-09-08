@@ -49,7 +49,7 @@ resource "aws_ecs_task_definition" "TaskDefinition" {
         { "name" : "INCREASE_AGENTS_SCALING_POLICY_NAME", "value" : "IncreaseAgents-${aws_appconfig_application.AppConfigAgentApplication.id}" },
         { "name" : "DLP_CCL_DIR", "value" : "/cssdlp" },
         { "name" : "CONSOLE_VPC", "value" : "${var.vpc}" },
-        { "name" : "CONSOLE_SECURITY_GROUP_ID", "value" : "${var.configure_load_balancer}" ? "${aws_security_group.ContainerSecurityGroupWithLB.id}" : "${aws_security_group.ContainerSecurityGroup.id}" },
+        { "name" : "CONSOLE_SECURITY_GROUP_ID", "value" : "${var.configure_load_balancer}" ? "${aws_security_group.ContainerSecurityGroupWithLB[count.index]}" : "${aws_security_group.ContainerSecurityGroup[count.index]}" },
         { "name" : "EVENT_BASED_SCAN_QUEUE_NAME", "value" : "${var.service_name}Queue-${aws_appconfig_application.AppConfigAgentApplication.id}" },
         { "name" : "API_AGENT_SERVICE_NAME", "value" : "${var.service_name}ApiAgentService-${aws_appconfig_application.AppConfigAgentApplication.id}" },
         # {"name" : "APP_CONFIG_DOCUMENT_SCHEMA_NAME", "value" :"${var.service_name}Config-Schema-${aws_appconfig_application.AppConfigAgentApplication.id}"},
