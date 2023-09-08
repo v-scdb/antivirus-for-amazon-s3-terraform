@@ -31,14 +31,14 @@ resource "aws_security_group" "ContainerSecurityGroupWithLB" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup.id}"]
+    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup[count.index]}"]
   }
   ingress {
     description     = "TLS from VPC"
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup.id}"]
+    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup[count.index]}"]
   }
 
   tags = { (join("-", ["${var.service_name}", "${aws_appconfig_application.AppConfigAgentApplication.id}"])) = "SecurityGroup" }
